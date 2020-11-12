@@ -2813,12 +2813,12 @@
             "type": "string"
           },
           {
-            "name": "securityPolicyProperties",
+            "name": "securityPolicyParameters",
             "in": "body",
             "description": "Security policy update properties",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/SecurityPolicyProperties"
+              "$ref": "#/definitions/SecurityPolicyParameters"
             }
           },
           {
@@ -2891,7 +2891,7 @@
             "description": "Accepted"
           },
           "204": {
-            "description": "No Content. The request has been accepted but the origin was not found."
+            "description": "No Content"
           },
           "default": {
             "description": "CDN error response describing why the operation failed.",
@@ -4147,20 +4147,20 @@
     },
     "SecurityPolicyParameters": {
       "description": "The json object containing security policy parameters",
-      "discriminator": "policyType",
+      "discriminator": "type",
       "required": [
-        "policyType"
+        "type"
       ],
       "type": "object",
       "properties": {
-        "policyType": {
+        "type": {
           "description": "The type of the Security policy to create.",
           "enum": [
             "WebApplicationFirewall"
           ],
           "type": "string",
           "x-ms-enum": {
-            "name": "policyType",
+            "name": "type",
             "modelAsString": true
           }
         }
@@ -5131,6 +5131,7 @@
             "Failed"
           ],
           "type": "string",
+          "readOnly": true,
           "x-ms-enum": {
             "name": "DeploymentStatus",
             "modelAsString": true
