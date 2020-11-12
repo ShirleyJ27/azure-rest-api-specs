@@ -3101,12 +3101,12 @@
             "type": "string"
           },
           {
-            "name": "secretUpdateProperties",
+            "name": "secretProperties",
             "in": "body",
             "description": "Secret properties",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/SecretUpdateParameters"
+              "$ref": "#/definitions/SecretProperties"
             }
           },
           {
@@ -4381,17 +4381,27 @@
     },
     "SecretProperties": {
       "description": "The JSON object that contains the properties of the Secret to create.",
-      "discriminator": "secretType",
-      "required": [
-        "secretType"
-      ],
       "allOf": [
         {
           "$ref": "#/definitions/AFDStateProperties"
         }
       ],
       "properties": {
-        "secretType": {
+        "parameters": {
+          "description": "object which contains secret parameters",
+          "$ref": "#/definitions/SecretParameters"
+        }
+      }
+    },
+    "SecretParameters": {
+      "description": "The json object containing secret parameters",
+      "discriminator": "type",
+      "required": [
+        "type"
+      ],
+      "type": "object",
+      "properties": {
+        "policyType": {
           "description": "The type of the Secret to create.",
           "enum": [
             "UrlSigningKey",
@@ -4400,48 +4410,21 @@
           ],
           "type": "string",
           "x-ms-enum": {
-            "name": "secretType",
+            "name": "type",
             "modelAsString": true
           }
         }
       }
     },
-    "SecretUpdateParameters": {
-      "description": "The domain JSON object required for Secret update.",
-      "type": "object",
-      "properties": {
-        "properties": {
-          "x-ms-client-flatten": true,
-          "$ref": "#/definitions/SecretUpdatePropertiesParameters"
-        }
-      }
-    },
-    "SecretUpdatePropertiesParameters": {
-      "description": "The JSON object that contains the properties of the domain to create.",
-      "properties": {
-        "parameters": {
-          "description": "Url Signing Key Parameters",
-          "$ref": "#/definitions/UrlSigningKeyParameters"
-        }
-      }
-    },
-    "UrlSigningKeyProperties": {
-      "description": "Url signing key parameters",
-      "x-ms-discriminator-value": "UrlSigningKey",
-      "allOf": [
-        {
-          "$ref": "#/definitions/SecretProperties"
-        }
-      ],
-      "properties": {
-        "parameters": {
-          "x-ms-client-flatten": true,
-          "$ref": "#/definitions/UrlSigningKeyParameters"
-        }
-      }
-    },
     "UrlSigningKeyParameters": {
       "description": "Url signing key parameters",
+      "x-ms-discriminator-value": "UrlSigningKey",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/SecretParameters"
+        }
+      ],
       "required": [
         "keyId",
         "secretSource"
@@ -4462,47 +4445,27 @@
         }
       }
     },
-    "ManagedCertificateProperties": {
-      "description": "Managed Certificate used for https",
-      "x-ms-discriminator-value": "ManagedCertificate",
-      "allOf": [
-        {
-          "$ref": "#/definitions/SecretProperties"
-        }
-      ],
-      "properties": {
-        "parameters": {
-          "x-ms-client-flatten": true,
-          "$ref": "#/definitions/ManagedCertificateParameters"
-        }
-      }
-    },
     "ManagedCertificateParameters": {
       "description": "Managed Certificate used for https",
+      "x-ms-discriminator-value": "ManagedCertificate",
+      "type": "object",
       "allOf": [
+        {
+          "$ref": "#/definitions/SecretParameters"
+        },
         {
           "$ref": "#/definitions/Certificate"
         }
       ]
     },
-    "CustomerCertificateProperties": {
-      "description": "Customer Certificate used for https",
-      "x-ms-discriminator-value": "CustomerCertificate",
-      "allOf": [
-        {
-          "$ref": "#/definitions/SecretProperties"
-        }
-      ],
-      "properties": {
-        "parameters": {
-          "x-ms-client-flatten": true,
-          "$ref": "#/definitions/CustomerCertificateParameters"
-        }
-      }
-    },
     "CustomerCertificateParameters": {
       "description": "Customer Certificate used for https",
+      "x-ms-discriminator-value": "CustomerCertificate",
+      "type": "object",
       "allOf": [
+        {
+          "$ref": "#/definitions/SecretParameters"
+        },
         {
           "$ref": "#/definitions/Certificate"
         }
