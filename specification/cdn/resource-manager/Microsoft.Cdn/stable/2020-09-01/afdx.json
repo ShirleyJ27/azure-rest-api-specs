@@ -40,10 +40,10 @@
           "AFDProfiles"
         ],
         "description": "Checks the quota and actual usage of endpoints under the given CDN profile.",
-        "operationId": "AFDXProfiles_ListResourceUsage",
+        "operationId": "AFDProfiles_ListResourceUsage",
         "x-ms-examples": {
-          "Profiles_ListResourceUsage": {
-            "$ref": "./examples/AFDXProfiles_ListResourceUsage.json"
+          "AFDProfiles_ListResourceUsage": {
+            "$ref": "./examples/AFDProfiles_ListResourceUsage.json"
           }
         },
         "parameters": [
@@ -845,7 +845,7 @@
         "description": "Checks the quota and actual usage of endpoints under the given CDN profile.",
         "operationId": "AFDEndpoints_ListResourceUsage",
         "x-ms-examples": {
-          "Profiles_ListResourceUsage": {
+          "AFDEndpoints_ListResourceUsage": {
             "$ref": "./examples/AFDEndpoints_ListResourceUsage.json"
           }
         },
@@ -1251,7 +1251,7 @@
         "description": "Checks the quota and actual usage of endpoints under the given CDN profile.",
         "operationId": "AFDOriginGroups_ListResourceUsage",
         "x-ms-examples": {
-          "Profiles_ListResourceUsage": {
+          "AFDOriginGroups_ListResourceUsage": {
             "$ref": "./examples/AFDOriginGroups_ListResourceUsage.json"
           }
         },
@@ -2244,7 +2244,7 @@
         "description": "Checks the quota and actual usage of endpoints under the given CDN profile.",
         "operationId": "RuleSets_ListResourceUsage",
         "x-ms-examples": {
-          "Profiles_ListResourceUsage": {
+          "RuleSets_ListResourceUsage": {
             "$ref": "./examples/RuleSets_ListResourceUsage.json"
           }
         },
